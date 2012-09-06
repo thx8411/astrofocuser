@@ -1,0 +1,41 @@
+astrofocuser v1.0
+
+===================================================
+(c) 2012 Blaise-Florentin Collin, GNU GPL v3
+contact : thx8411_nospam_@users.sourceforge.net
+www : http://sourceforge.net/projects/astrofocuser
+===================================================
+
+1. Presentation
+2. Requirements
+3. Usage
+4. Build from sources
+
+===================================================
+
+1. Presentation
+
+   astrofocuser is a very simple tool written with
+Qt 4.5 to help star focusing in astrophotogaphy. This
+tool applies an FWHM by transparency on the background
+window.
+
+2. Requirements
+
+   astrofocuser just needs the standard Qt 4.5 libraries
+to work, on a modern windowed operating system.
+
+3. Usage
+
+   Just launch astrofocuser, and place the window on the
+area to exploit. Astrofocuser will then display the area
+FWHM in yellow
+
+4. Build from sources
+
+   You will need a qmake, make, a c++ compiler with all
+the c++ standard libraries, and the developpement version
+of the Qt 4.5 (or above) libraries. Just use 'qmake' and
+'make' in the source directory.
+
+
