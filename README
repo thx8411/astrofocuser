@@ -39,3 +39,6 @@ of the Qt 4.5 (or above) libraries. Just use 'qmake' and
 'make' in the source directory.
 
 
+PS : on some OS (like ubuntu 10.04 LTS) , you will have
+to activate the special visual effects to get the 
+astrofocuser transparency working.
