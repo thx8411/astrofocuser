@@ -60,7 +60,7 @@ QFwhm::QFwhm()
    // timer loop
    timer=new QTimer();
    connect(timer, SIGNAL(timeout()), this, SLOT(compute()));
-   timer->start(100);
+   timer->start(200);
 }
 
 QFwhm::~QFwhm() {
