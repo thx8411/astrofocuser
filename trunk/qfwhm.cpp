@@ -18,6 +18,8 @@
  * MA 02110-1301 USA
  */
 
+#include <math.h>
+
 #include "qfwhm.hpp"
 
 QFwhm::QFwhm()
@@ -106,6 +108,8 @@ void QFwhm::compute() {
    x2_sum/=(double)n;
    // final value
    fwhm_value=sqrt(x2_sum)*2.3548;
+   // this represents a surface, so we have to get half the diameter
+   fwhm_value=sqrt(fwhm_value/M_PI)*2;
 
    // update the label value
    fwhm_text.setNum(fwhm_value,'f',2);
