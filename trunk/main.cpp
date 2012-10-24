@@ -26,8 +26,8 @@
 
 // app information
 #define ASTROFOCUSER_NAME	"AstroFocuser"
-#define ASTROFOCUSER_VERSION	"v1.0"
-#define ASTROFOCUSER_BUILD	1
+#define ASTROFOCUSER_VERSION	"v1.1"
+#define ASTROFOCUSER_BUILD	2
 #define ASTROFOCUSER_COPYRIGHT	"(c) 2012 Blaise-Florentin Collin, GNU GPLv3"
 
 int main(int argc, char *argv[])
