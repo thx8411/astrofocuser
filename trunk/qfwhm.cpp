@@ -98,8 +98,8 @@ void QFwhm::compute() {
    }
    // pow 2
    mean/=(double)n;
-   for(int i=0;i<FWHM_WIDTH;i++) {
-      for(int j=0;j<FWHM_HEIGHT;j++) {
+   for(i=0;i<FWHM_WIDTH;i++) {
+      for(j=0;j<FWHM_HEIGHT;j++) {
          plot=image.pixel(i,j);
          pixel_value=qGray(plot);
          x2_sum+=pow((double)pixel_value-mean,2);
