@@ -1,0 +1,11 @@
+[Desktop Entry]
+Version=1.0
+Encoding=UTF-8
+Name=astrofocuser
+Comment=Focus helper for astronomy imaging
+Exec=astrofocuser
+Terminal=false
+Icon=astrofocuser-icon.png
+X-MultipleArgs=false
+Type=Application
+Categories=Education;Science;Astronomy

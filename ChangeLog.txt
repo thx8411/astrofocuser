@@ -1,3 +1,12 @@
+Version 1.1.2
+
+   * now builds with cmake
+   * source package generation added
+   * debian package generation added
+   * rpm package generation added
+   * icon added
+   * desktop entry added
+
 Version 1.1
 
    * FWHM formula more accurate
