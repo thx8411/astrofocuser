@@ -1,7 +1,7 @@
-astrofocuser v1.1
+astrofocuser v1.1.2
 
 ===================================================
-(c) 2012 Blaise-Florentin Collin, GNU GPL v3
+(c) 2013 Blaise-Florentin Collin, GNU GPL v3
 contact : thx8411_nospam_@users.sourceforge.net
 www : http://sourceforge.net/projects/astrofocuser
 ===================================================
@@ -33,10 +33,19 @@ FWHM in yellow
 
 4. Build from sources
 
-   You will need a qmake, make, a c++ compiler with all
+   You will need a cmake, make, a c++ compiler with all
 the c++ standard libraries, and the developpement version
-of the Qt 4.5 (or above) libraries. Just use 'qmake' and
-'make' in the source directory.
+of the Qt 4.5 (or above) libraries.
+
+   To build from source use :
+
+   >gzip -d astrofocuser_?.?.?_src.tar.gz
+   >tar -xvf astrofocuser_?.?.?_src.tar
+   >mkdir astrofocuser-build
+   >cd astrofocuser-build
+   >cmake ../astrofocuser_?.?.?_src/
+   >make
+   >sudo make install
 
 
 PS : on some OS (like ubuntu 10.04 LTS) , you will have

@@ -25,15 +25,13 @@
 #include "qfwhm.hpp"
 
 // app information
-#define ASTROFOCUSER_NAME	"AstroFocuser"
-#define ASTROFOCUSER_VERSION	"v1.1.1"
-#define ASTROFOCUSER_BUILD	3
-#define ASTROFOCUSER_COPYRIGHT	"(c) 2013 Blaise-Florentin Collin, GNU GPLv3"
+#define ASTROFOCUSER_NAME	"astrofocuser"
+#define ASTROFOCUSER_COPYRIGHT	"(c) Blaise-Florentin Collin, GNU GPLv3"
 
 int main(int argc, char *argv[])
 {
    // software informations
-   std::cout << ASTROFOCUSER_NAME << " " << ASTROFOCUSER_VERSION << " build " << ASTROFOCUSER_BUILD << std::endl;
+   std::cout << ASTROFOCUSER_NAME << " " << BINARY_VERSION << " build " << BUILD_VERSION << std::endl;
    std::cout << ASTROFOCUSER_COPYRIGHT << std::endl;
 
    // app and object build
