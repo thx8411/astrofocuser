@@ -23,7 +23,8 @@ window.
 2. Requirements
 
    astrofocuser just needs the standard Qt 4.5 libraries
-to work, on a modern windowed operating system.
+to work, on a modern windowed operating system, with a
+compositing window manager.
 
 3. Usage
 
@@ -50,4 +51,5 @@ of the Qt 4.5 (or above) libraries.
 
 PS : on some OS (like ubuntu 10.04 LTS) , you will have
 to activate the special visual effects to get the 
-astrofocuser transparency working.
+astrofocuser transparency working. Anyway, you will need
+a compositing window manager to get astrofocuser working.
