@@ -23,8 +23,8 @@ project(astrofocuser)
 set(DEB_EPOCH 0)
 set(MAJOR_VERSION "1")
 set(MINOR_VERSION "1")
-set(PATCH_VERSION "2")
-set(BUILD_VERSION "4")
+set(PATCH_VERSION "3")
+set(BUILD_VERSION "5")
 set(FULL_VERSION "${MAJOR_VERSION}.${MINOR_VERSION}.${PATCH_VERSION}")
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -D BINARY_VERSION=\\\"${FULL_VERSION}\\\" -D BUILD_VERSION=${BUILD_VERSION}")
 
@@ -36,6 +36,13 @@ find_package(Qt4 REQUIRED)
 if(!QT4_FOUND)
    message(FATAL_ERROR "Qt4 not found, generation stopped")
 endif(!QT4_FOUND)
+
+find_package(X11 REQUIRED)
+if(!X11_Xcomposite_FOUND)
+   message(FATAL_ERROR "X11 composite extensions missing")
+else(!X11_Xcomposite_FOUND)
+   include_directories(${X11_INCLUDE_DIR} ${X11_Xcomposite_INCLUDE_PATH})
+endif(!X11_Xcomposite_FOUND)
 
 # source files
 set(astrofocuser_SOURCES
@@ -51,7 +58,7 @@ add_definitions(${QT_DEFINITIONS})
 add_executable(astrofocuser ${astrofocuser_SOURCES})
 
 # target libs
-target_link_libraries(astrofocuser ${QT_LIBRARIES})
+target_link_libraries(astrofocuser ${QT_LIBRARIES} ${X11_LIBRARIES} ${X11_Xcomposite_LIB})
 
 # installation
 install(TARGETS astrofocuser RUNTIME DESTINATION /usr/bin)
@@ -122,8 +129,7 @@ if(DEBIAN_FOUND)
    set(CPACK_DEBIAN_PACKAGE_NAME "astrofocuser")
 
    # dependencies
-   set(CPACK_DEBIAN_PACKAGE_DEPENDS "libc6, libgcc1, libqtcore4
-         , libqtgui4, libstdc++6")
+   set(CPACK_DEBIAN_PACKAGE_DEPENDS "libc6, libgcc1, libqtcore4, libqtgui4, libstdc++6, libxcomposite1")
    set(CPACK_DEBIAN_PACKAGE_SECTION graphics)
    set(CPACK_DEBIAN_PACKAGE_VERSION "${DEB_EPOCH}:${FULL_VERSION}-1")
    set(CPACK_PACKAGE_FILE_NAME ${CPACK_DEBIAN_PACKAGE_NAME}_${FULL_VERSION}_${ARCHITECTURE})
@@ -159,9 +165,11 @@ if(FEDORA_FOUND OR MAGEIA_FOUND)
    if(ARCHITECURE STREQUAL "x86_64")
       set(CPACK_RPM_PACKAGE_REQUIRES "lib64qtcore4,")
       set(CPACK_RPM_PACKAGE_REQUIRES "${CPACK_RPM_PACKAGE_REQUIRES} lib64qtgui4")
+      set(CPACK_RPM_PACKAGE_REQUIRES "${CPACK_RPM_PACKAGE_REQUIRES} lib64xcomposite1")
    else(ARCHITECURE STREQUAL "x86_64")
       set(CPACK_RPM_PACKAGE_REQUIRES "libqtcore4,")
       set(CPACK_RPM_PACKAGE_REQUIRES "${CPACK_RPM_PACKAGE_REQUIRES} libqtgui4")
+      set(CPACK_RPM_PACKAGE_REQUIRES "${CPACK_RPM_PACKAGE_REQUIRES} libxcomposite1")
    endif(ARCHITECURE STREQUAL "x86_64")
 
 endif(FEDORA_FOUND OR MAGEIA_FOUND)

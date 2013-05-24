@@ -1,5 +1,5 @@
 /*
- * copyright (c) 2012 Blaise-Florentin Collin
+ * copyright (c) 2012-2013 Blaise-Florentin Collin
  *
  * This file is part of astrofocuser.
  *
@@ -20,10 +20,46 @@
 
 #include <math.h>
 
+#include <Qt/qx11info_x11.h>
+#include <Qt/qmessagebox.h>
+
 #include "qfwhm.hpp"
+
+#include <X11/Xlib.h>
+#include <X11/Xatom.h>
+#include <X11/extensions/Xcomposite.h>
+
+Atom _NET_WM_CM_S0;
 
 QFwhm::QFwhm()
 {
+   //
+   // checking if we have a composite window manager
+   //
+
+   // are extensions present ?
+   int base, error;
+   if(!XCompositeQueryExtension(QX11Info::display(),&base,&error)) {
+      QMessageBox::critical(this, tr("astrofocuser"),tr("Your window manager can't compose\nLeaving..."));
+      exit(1);
+   } else {
+      // is the atom defined
+      _NET_WM_CM_S0 = XInternAtom(QX11Info::display(), "_NET_WM_CM_S0", True);
+      if( _NET_WM_CM_S0 == None ) {
+         QMessageBox::critical(this, tr("astrofocuser"),tr("Your window manager can't compose\nLeaving..."));
+         exit(1);
+      }
+      // is a composite window manager running on the first display
+      if(XGetSelectionOwner(QX11Info::display(), _NET_WM_CM_S0) == None ){
+         QMessageBox::critical(this, tr("astrofocuser"),tr("Your window manager can't compose\nLeaving..."));
+         exit(1);
+      }
+   }
+
+   //
+   // init
+   //
+
    // fwhm default value
    fwhm_value=0.0;
 
