@@ -1,6 +1,7 @@
 Version 1.1.3
 
    * composite window manager detection added
+   * bug in rpm generation dependencies fixed
 
 Version 1.1.2
 
