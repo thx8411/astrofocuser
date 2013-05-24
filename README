@@ -36,7 +36,8 @@ FWHM in yellow
 
    You will need a cmake, make, a c++ compiler with all
 the c++ standard libraries, and the developpement version
-of the Qt 4.5 (or above) libraries.
+of the Qt 4.5 (or above) libraries. You will also need the
+developpement version of the libx11 composite extensions.
 
    To build from source use :
 
