@@ -33,16 +33,16 @@ set($ENV{DESTDIR} "${CMAKE_BINARY_DIR}/fakeinstall")
 
 # needed packages
 find_package(Qt4 REQUIRED)
-if(!QT4_FOUND)
+if(NOT QT4_FOUND)
    message(FATAL_ERROR "Qt4 not found, generation stopped")
-endif(!QT4_FOUND)
+endif(NOT QT4_FOUND)
 
 find_package(X11 REQUIRED)
-if(!X11_Xcomposite_FOUND)
+if(NOT X11_Xcomposite_FOUND)
    message(FATAL_ERROR "X11 composite extensions missing")
-else(!X11_Xcomposite_FOUND)
+else(NOT X11_Xcomposite_FOUND)
    include_directories(${X11_INCLUDE_DIR} ${X11_Xcomposite_INCLUDE_PATH})
-endif(!X11_Xcomposite_FOUND)
+endif(NOT X11_Xcomposite_FOUND)
 
 # source files
 set(astrofocuser_SOURCES
