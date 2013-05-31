@@ -49,6 +49,13 @@ developpement version of the libx11 composite extensions.
    >make
    >sudo make install
 
+   In order to help us to make astrofocuser better, please
+use the command :
+
+   >make Experimental
+
+   It will send a build report to our dashboard.
+
 
 PS : on some OS (like ubuntu 10.04 LTS) , you will have
 to activate the special visual effects to get the 
