@@ -11,11 +11,6 @@ cmake_minimum_required(VERSION 2.8.6)
 # BUILD DIRECTIVES #
 ####################
 
-# distribution detection
-find_file(DEBIAN_FOUND debian_version debconf.conf PATHS /etc)
-find_file(FEDORA_FOUND fedora-release PATHS /etc)
-find_file(MAGEIA_FOUND mageia-release PATHS /etc)
-
 # project name
 project(astrofocuser)
 
@@ -27,6 +22,12 @@ set(PATCH_VERSION "3")
 set(BUILD_VERSION "5")
 set(FULL_VERSION "${MAJOR_VERSION}.${MINOR_VERSION}.${PATCH_VERSION}")
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -D BINARY_VERSION=\\\"${FULL_VERSION}\\\" -D BUILD_VERSION=${BUILD_VERSION}")
+message(STATUS "Building astrofocuser ${FULL_VERSION}")
+
+# distribution detection
+find_file(DEBIAN_FOUND debian_version debconf.conf PATHS /etc)
+find_file(FEDORA_FOUND fedora-release PATHS /etc)
+find_file(MAGEIA_FOUND mageia-release PATHS /etc)
 
 # destir for binary packages
 set($ENV{DESTDIR} "${CMAKE_BINARY_DIR}/fakeinstall")
@@ -175,3 +176,10 @@ if(FEDORA_FOUND OR MAGEIA_FOUND)
 endif(FEDORA_FOUND OR MAGEIA_FOUND)
 
 include(CPack)
+
+
+#########
+# TESTS #
+#########
+
+include(CTest)
