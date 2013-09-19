@@ -21,10 +21,10 @@
 #include <math.h>
 
 #ifdef _X11_NEEDED_
-#include <Qt/qx11info_x11.h>
+#include <QX11Info>
 #endif
 
-#include <Qt/qmessagebox.h>
+#include <QMessageBox>
 
 #include "qfwhm.hpp"
 
