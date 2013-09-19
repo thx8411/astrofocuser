@@ -20,16 +20,20 @@
 
 #include <math.h>
 
+#ifdef _X11_NEEDED_
 #include <Qt/qx11info_x11.h>
+#endif
+
 #include <Qt/qmessagebox.h>
 
 #include "qfwhm.hpp"
 
+#ifdef _X11_NEEDED_
 #include <X11/Xlib.h>
 #include <X11/Xatom.h>
 #include <X11/extensions/Xcomposite.h>
-
 Atom _NET_WM_CM_S0;
+#endif
 
 QFwhm::QFwhm()
 {
@@ -37,6 +41,7 @@ QFwhm::QFwhm()
    // checking if we have a composite window manager
    //
 
+#ifdef _X11_NEEDED_
    // are extensions present ?
    int base, error;
    if(!XCompositeQueryExtension(QX11Info::display(),&base,&error)) {
@@ -55,6 +60,7 @@ QFwhm::QFwhm()
          exit(1);
       }
    }
+#endif
 
    //
    // init

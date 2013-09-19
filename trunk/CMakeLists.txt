@@ -25,9 +25,20 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -D BINARY_VERSION=\\\"${FULL_VERSION}\\\
 message(STATUS "Building astrofocuser ${FULL_VERSION}")
 
 # distribution detection
-find_file(DEBIAN_FOUND debian_version debconf.conf PATHS /etc)
-find_file(FEDORA_FOUND fedora-release PATHS /etc)
-find_file(MAGEIA_FOUND mageia-release PATHS /etc)
+if(UNIX)
+   set(UNIX_FOUND YES)
+   if(APPLE)
+      set(MACOSX_FOUND YES)
+      message(STATUS "Building for Mac OS X target")
+   else(APPLE)
+      find_file(DEBIAN_FOUND debian_version debconf.conf PATHS /etc)
+      find_file(FEDORA_FOUND fedora-release PATHS /etc)
+      find_file(MAGEIA_FOUND mageia-release PATHS /etc)
+      message(STATUS "Building for UNIX target")
+   endif(APPLE)
+else(UNIX)
+   message(FATAL "Astrofocuser is only available for UNIX targets, generation stopped")
+endif(UNIX)
 
 # destir for binary packages
 set($ENV{DESTDIR} "${CMAKE_BINARY_DIR}/fakeinstall")
@@ -38,12 +49,15 @@ if(NOT QT4_FOUND)
    message(FATAL_ERROR "Qt4 not found, generation stopped")
 endif(NOT QT4_FOUND)
 
-find_package(X11 REQUIRED)
-if(NOT X11_Xcomposite_FOUND)
-   message(FATAL_ERROR "X11 composite extensions missing")
-else(NOT X11_Xcomposite_FOUND)
-   include_directories(${X11_INCLUDE_DIR} ${X11_Xcomposite_INCLUDE_PATH})
-endif(NOT X11_Xcomposite_FOUND)
+if(NOT MACOSX_FOUND)
+   find_package(X11 REQUIRED)
+   if(NOT X11_Xcomposite_FOUND)
+      message(FATAL_ERROR "X11 composite extensions missing")
+   else(NOT X11_Xcomposite_FOUND)
+      include_directories(${X11_INCLUDE_DIR} ${X11_Xcomposite_INCLUDE_PATH})
+      set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -D_X11_NEEDED_")
+   endif(NOT X11_Xcomposite_FOUND)
+endif(NOT MACOSX_FOUND)
 
 # source files
 set(astrofocuser_SOURCES
