@@ -1,0 +1,1 @@
+astrofocuser is a very simple tool written with Qt 4.5 to help star focusing in astrophotogaphy. This tool applies an FWHM by transparency on the background window.
